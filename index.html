@@ -45,10 +45,9 @@ function checkNumber() {
         } else if (value === randNum && numInput.value !== "") {
             text.innerHTML = "ПРЯМО В ТОЧКУ 🤖, ПОРОБУЙ УГАДАТЬ СЛЕДУЮЩЕЕ";
             randNum = Math.floor(Math.random() * 100) + 1;
-            numInput.value = ""; // очищаем поле для нового числа
+            numInput.value = "";
         }
         console.log(randNum);
-        // цикл do...while тут фактически выполнится один раз за событие input
     } while (false);
 }
 
