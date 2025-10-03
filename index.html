@@ -1,35 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body style="background: #5E69EE;">
+    <title>Игра Угадай число</title>
     <style>
-    body{
-        display: flex; 
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        color: #F4F4FB;
-    }
-    .container{
-        display: flex; 
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-    }
-</style>
-    <div class="container">
-        <h1>СУПЕР ШАНС ВЫИГРАТЬ ЧТОНИБУДЬ🤖</h1>
-        <h2>УГАДАЙ КАКОЕ ЧИСЛО ЗАГАДАЛ МОЙ МОЗГ🤖 </h2>
-        <input type="text" class="num">
-        <p class="text"></p>
-    </div>
+        body {
+            background: #5E69EE;;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            font-size: 20px;
+            width: 60px;
+            text-align: center;
+        }
+        .text {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
 
-    <script src="index.js"></script>
+<h1>Угадай число от 1 до 100</h1>
+<input class="num" type="number" min="1" max="100" placeholder="0">
+<div class="text">Введите число</div>
+
+<script>
+let numInput = document.querySelector('.num');
+let text = document.querySelector('.text');
+let randNum = Math.floor(Math.random() * 100) + 1;
+
+function checkNumber() {
+    let value;
+    do {
+        value = Number(numInput.value);
+        if (value < randNum) {
+            text.innerHTML = "высше";
+        } else if (value > randNum) {
+            text.innerHTML = "меньше";
+        } else if (value === randNum && numInput.value !== "") {
+            text.innerHTML = "ПРЯМО В ТОЧКУ 🤖, ПОРОБУЙ УГАДАТЬ СЛЕДУЮЩЕЕ";
+            randNum = Math.floor(Math.random() * 100) + 1;
+            numInput.value = ""; // очищаем поле для нового числа
+        }
+        console.log(randNum);
+        // цикл do...while тут фактически выполнится один раз за событие input
+    } while (false);
+}
+
+numInput.addEventListener('input', checkNumber);
+</script>
+
 </body>
-</html>
+</html
